@@ -3,9 +3,9 @@
 $host = "localhost";
 $db_user = "root";
 $db_pass = null;
-$db_name = "tododb";
+$db_name = "todo_db";
 
-$mysqli = new mysqli($host, $db_name, $dbpass, $db_name);
+$mysqli = new mysqli($host, $db_user, $db_pass, $db_name);
 
 if ($mysqli->connect_error){
   die("Connection failed: ". $mysqli->connect_error);
