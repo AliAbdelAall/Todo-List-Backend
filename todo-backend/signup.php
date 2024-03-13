@@ -6,7 +6,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 $check_user = $mysqli -> prepare('select * from users where username = ? or email = ?');
-$check_user->bind_param('ss', $username, $password);
+$check_user->bind_param('ss', $username, $email);
 $check_user->execute();
 $check_user->store_result();
 $user_exists = $check_user->num_rows();
