@@ -1,0 +1,100 @@
+.log-in-container{
+  background: 
+      linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),
+      url("../../assets/Images/bg-login.jpg")
+      no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.log-in-container h1{
+  margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 55px;
+}
+
+.login-wrapper{
+  height: auto;
+  padding: 20px;
+  width: 25%;
+  min-width: 350px;
+  font-size: 14px;
+}
+
+.input-box{
+  position: relative;
+  width: 100%;
+}
+.input-box input{
+  width: 100%;
+  padding: 20px 25px 20px 55px;
+  border-radius: 32px;
+  margin: 15px 0;
+  outline: none;
+  font-size: 20px;
+  border: none;
+ 
+}
+
+.input-box input::placeholder{
+  color: rgb(186, 186, 186);
+}
+
+.input-box i{
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+
+}
+
+.log-in-text{
+  width: 100%;
+  padding: 10px 0 20px 10px;
+}
+
+.log-in-text p{
+  font-size: 16px;
+}
+
+.log-in-text a{
+  font-size: large;
+}
+
+.log-in-btn{
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 32px;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 35px;
+  border: none;
+  background-color: rgba(255, 107, 0, 1);
+}
+
+.log-in-btn:hover{
+  cursor: pointer;
+  opacity: 80%;
+  border: none;
+}
+
+.handle-incorrect{
+  width: 100%;
+  padding-left: 25px;
+  color: rgba(255, 0, 0, 0.69);
+
+}
+
+.handle-incorrect p{
+  font-size: medium;
+}
+
+.hidden{
+  display: none;
+}
+
+.invisible{
+  visibility: hidden;
+}

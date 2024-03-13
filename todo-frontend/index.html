@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <link rel="stylesheet" href="./styles/common/utilities.css">
+  <link rel="stylesheet" href="./styles/common/colors.css">
+  <link rel="stylesheet" href="./styles/index.css">
+  <title>Log-in</title>
+</head>
+<body>
+  <div class="flex center log-in-container">
+    <div class="flex center column login-wrapper">
+      <h1 class="white" id="login-heading">Log In</h1>
+      <div class="flex justify-start handle-incorrect">
+        <p class="hidden" id="incorrect-error">Incorrect Usename or Password</p>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Username" id="input-username">
+        <i class="fa-solid fa-user primary-color"></i>
+      </div>
+      <div class="input-box">
+        <input type="password" placeholder="Password" id="input-password">
+        <i class="fa-solid fa-lock primary-color"></i>
+      </div>
+      <div class="flex justify-start log-in-text">
+        <p class="white" id="have-account">Don't have an account? </p>
+        <a class="primary-color" href="#" id="login-switch">Sign-Up</a>
+      </div>
+      <button class="white log-in-btn" id="login-btn">Login</button>
+    </div>
+  </div>
+  <script src="./scripts/login.js"></script>
+</body>
+</html>
