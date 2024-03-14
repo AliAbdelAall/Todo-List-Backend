@@ -3,6 +3,8 @@ const input_username = document.getElementById("input-username")
 const input_email = document.getElementById("input-email")
 const input_password = document.getElementById("input-password")
 const confirm_password = document.getElementById("confirm-password")
+const input_email_box = document.getElementById("input-email-box")
+const confirm_password_box = document.getElementById("confirm-password-box")
 const incorrect = document.getElementById("incorrect-error")
 const have_account = document.getElementById("have-account")
 const login_switch = document.getElementById("login-switch")
@@ -35,42 +37,52 @@ const login_btn = document.getElementById("login-btn")
 // }
 
 
-const validateUserSignup = (username, email, password) => {
-  incorrect.innerText = "User Already Exists"
+const validateUserSignup = async (username, email, password) => {
+  console.log(typeof (username), typeof (email), typeof (password))
+  const valid_signup = await validateSignup(username, email, password)
+  console.log(valid_signup)
+  // incorrect.innerText = "User Already Exists"
 
-  if (username !== admin.username) {
-    let found = false
+  // if (username !== admin.username) {
+  //   let found = false
 
-    for (let i = 0; i < users.length; i++) {
-      if (username === users[i].username) {
-        incorrect.classList.remove("invisible")
-        found = true
-        break
-      }
-    }
-    if (!found) {
-      users.push({
-        username: username,
-        password: password
-      })
-      saveUsers()
-      window.location.href = "./pages/main.html"
-    }
-  } else { incorrect.classList.remove("invisible") }
+  //   for (let i = 0; i < users.length; i++) {
+  //     if (username === users[i].username) {
+  //       incorrect.classList.remove("invisible")
+  //       found = true
+  //       break
+  //     }
+  //   }
+  //   if (!found) {
+  //     users.push({
+  //       username: username,
+  //       password: password
+  //     })
+  //     saveUsers()
+  //     window.location.href = "./pages/main.html"
+  //   }
+  // } else { incorrect.classList.remove("invisible") }
 }
 
-const checkInputIfEmpty = (username, email, password) => {
-  if (username === "" || password === "" || email === "") {
+const checkInputIfEmpty = (username, email, password, conf_password) => {
+  if (username === "" || password === "" || email === "" || conf_password === "") {
     return true
   } return false
 }
 
-const validateSignup = () => {
+const validateUserInput = () => {
   const username = input_username.value
   const email = input_email.value
   const password = input_password.value
+  const conf_password = confirm_password.value
+  console.log(typeof (username), typeof (email), typeof (password))
 
-  if (!checkInputIfEmpty(username, email, password)) {
+  if (!checkInputIfEmpty(username, email, password, conf_password)) {
+    console.log("iam not empty")
+    if (password !== conf_password) {
+      incorrect.innerText = "Passwords Does Not Match"
+      incorrect.classList.remove("invisible")
+    }
     validateUserSignup(username, email, password)
   } else {
     incorrect.innerText = "Please Fill All required Fields"
@@ -84,6 +96,8 @@ const switchToSignup = () => {
   login_switch.innerText = "Log-In"
   login_btn.innerText = "SignUp"
   incorrect.innerText = "User Already Exists"
+  input_email_box.classList.remove("hidden")
+  confirm_password_box.classList.remove("hidden")
   incorrect.classList.add("invisible")
 }
 
@@ -93,6 +107,8 @@ const switchToLogin = () => {
   login_switch.innerText = "Sign-Up"
   login_btn.innerText = "LogIn"
   incorrect.innerText = "Incorrect Username or Password"
+  input_email_box.classList.add("hidden")
+  confirm_password_box.classList.add("hidden")
   incorrect.classList.add("invisible")
 }
 
@@ -111,7 +127,7 @@ const checkLoginOrSignup = () => {
     if (login_btn.innerText === "Login") {
       validateAdminLogin()
     } else {
-      validateSignup()
+      validateUserInput()
     }
   }, 100)
 }
