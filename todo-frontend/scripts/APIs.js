@@ -15,3 +15,18 @@ const validateSignup = (username, email, password) => {
   }
 }
 
+const validateLogin = (identifier, password) => {
+  try {
+    const result = fetch("http://127.0.1/Todo List Backend/todo-backend/login.php", {
+      method: 'POST',
+      body: {
+        identifier,
+        password,
+      }
+    })
+    response = JSON.parse(result)
+    return result
+  } catch (error) {
+    console.log(error)
+  }
+}
