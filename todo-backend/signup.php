@@ -24,3 +24,4 @@ if ($user_exists == 0){
 }
 
 echo json_encode($response);
+// echo json_encode(["username"=>$username]);

@@ -13,28 +13,28 @@ const login_btn = document.getElementById("login-btn")
 
 
 
-// const validateUserLogin = (identifier, password) => {
+const validateUserLogin = (identifier, password) => {
+  const valid_login = validateLogin(identifier, password)
+  //   if (users.length === 0) {
+  //     incorrect.classList.remove("invisible")
+  //   } else {
+  //     for (let i = 0; i < users.length; i++) {
+  //       if (username === users[i].username) {
+  //         found = true
 
-//   if (users.length === 0) {
-//     incorrect.classList.remove("invisible")
-//   } else {
-//     for (let i = 0; i < users.length; i++) {
-//       if (username === users[i].username) {
-//         found = true
-
-//         if (password === users[i].password) {
-//           window.location.href = "./pages/main.html"
-//           break
-//         } else {
-//           incorrect.classList.remove("invisible")
-//           break
-//         }
-//       }
-//     } if (!found) {
-//       incorrect.classList.remove("invisible")
-//     }
-//   }
-// }
+  //         if (password === users[i].password) {
+  //           window.location.href = "./pages/main.html"
+  //           break
+  //         } else {
+  //           incorrect.classList.remove("invisible")
+  //           break
+  //         }
+  //       }
+  //     } if (!found) {
+  //       incorrect.classList.remove("invisible")
+  //     }
+  //   }
+}
 
 
 const validateUserSignup = async (username, email, password) => {
@@ -125,7 +125,7 @@ const checkLoginOrSignup = () => {
 
   setTimeout(() => {
     if (login_btn.innerText === "Login") {
-      validateAdminLogin()
+      validateUserLogin()
     } else {
       validateUserInput()
     }

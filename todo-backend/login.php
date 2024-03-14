@@ -26,7 +26,7 @@ if ($num_rows == 0){
   if (password_verify($password, $hashed_password)){
     $response['status'] = "logged in";
     $response['user_id'] = $id;
-    $response['usernme'] = $username;
+    $response['username'] = $username;
     $response['email'] = $email;
   }else{
     $response['status'] = "incorrect credentials";
