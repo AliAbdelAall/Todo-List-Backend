@@ -11,41 +11,29 @@ const login_btn = document.getElementById("login-btn")
 
 
 
-const validateUserLogin = (identifier, password) => {
+// const validateUserLogin = (identifier, password) => {
 
-  if (users.length === 0) {
-    incorrect.classList.remove("hidden")
-  } else {
-    for (let i = 0; i < users.length; i++) {
-      if (username === users[i].username) {
-        found = true
+//   if (users.length === 0) {
+//     incorrect.classList.remove("invisible")
+//   } else {
+//     for (let i = 0; i < users.length; i++) {
+//       if (username === users[i].username) {
+//         found = true
 
-        if (password === users[i].password) {
-          window.location.href = "./pages/main.html"
-          break
-        } else {
-          incorrect.classList.remove("hidden")
-          break
-        }
-      }
-    } if (!found) {
-      incorrect.classList.remove("hidden")
-    }
-  }
-}
+//         if (password === users[i].password) {
+//           window.location.href = "./pages/main.html"
+//           break
+//         } else {
+//           incorrect.classList.remove("invisible")
+//           break
+//         }
+//       }
+//     } if (!found) {
+//       incorrect.classList.remove("invisible")
+//     }
+//   }
+// }
 
-const validateAdminLogin = () => {
-  const username = input_username.value
-  const password = input_password.value
-
-  if (username === admin.username) {
-    if (password === admin.password) {
-      window.location.href = "./pages/adminpanel.html"
-
-    } else { incorrect.classList.remove("hidden") }
-
-  } else { validateUserLogin(username, password) }
-}
 
 const validateUserSignup = (username, email, password) => {
   incorrect.innerText = "User Already Exists"
@@ -55,7 +43,7 @@ const validateUserSignup = (username, email, password) => {
 
     for (let i = 0; i < users.length; i++) {
       if (username === users[i].username) {
-        incorrect.classList.remove("hidden")
+        incorrect.classList.remove("invisible")
         found = true
         break
       }
@@ -68,24 +56,25 @@ const validateUserSignup = (username, email, password) => {
       saveUsers()
       window.location.href = "./pages/main.html"
     }
-  } else { incorrect.classList.remove("hidden") }
+  } else { incorrect.classList.remove("invisible") }
 }
 
-const checkInputIfEmpty = (username, password) => {
-  if (username === "" || password === "") {
+const checkInputIfEmpty = (username, email, password) => {
+  if (username === "" || password === "" || email === "") {
     return true
   } return false
 }
 
 const validateSignup = () => {
   const username = input_username.value
+  const email = input_email.value
   const password = input_password.value
 
-  if (!checkInputIfEmpty(username, password)) {
-    validateUserSignup(username, password)
+  if (!checkInputIfEmpty(username, email, password)) {
+    validateUserSignup(username, email, password)
   } else {
-    incorrect.innerText = "Please Fill Both Username And Password"
-    incorrect.classList.remove("hidden")
+    incorrect.innerText = "Please Fill All required Fields"
+    incorrect.classList.remove("invisible")
   }
 }
 
@@ -95,7 +84,7 @@ const switchToSignup = () => {
   login_switch.innerText = "Log-In"
   login_btn.innerText = "SignUp"
   incorrect.innerText = "User Already Exists"
-  incorrect.classList.add("hidden")
+  incorrect.classList.add("invisible")
 }
 
 const switchToLogin = () => {
@@ -104,7 +93,7 @@ const switchToLogin = () => {
   login_switch.innerText = "Sign-Up"
   login_btn.innerText = "LogIn"
   incorrect.innerText = "Incorrect Username or Password"
-  incorrect.classList.add("hidden")
+  incorrect.classList.add("invisible")
 }
 
 const toggleLoginSignup = () => {
@@ -116,7 +105,7 @@ const toggleLoginSignup = () => {
 }
 
 const checkLoginOrSignup = () => {
-  incorrect.classList.add("hidden")
+  incorrect.classList.add("invisible")
 
   setTimeout(() => {
     if (login_btn.innerText === "Login") {
