@@ -1,29 +1,17 @@
 const login_header = document.getElementById("login-heading")
 const input_username = document.getElementById("input-username")
+const input_email = document.getElementById("input-email")
 const input_password = document.getElementById("input-password")
+const confirm_password = document.getElementById("confirm-password")
 const incorrect = document.getElementById("incorrect-error")
 const have_account = document.getElementById("have-account")
 const login_switch = document.getElementById("login-switch")
 const login_btn = document.getElementById("login-btn")
 
-let users = loadUsers()
 
-const admin = {
-  username: "admin",
-  password: "1234"
-}
 
-function loadUsers() {
-  const users_JSON = localStorage.getItem("users");
-  return users_JSON ? JSON.parse(users_JSON) : [];
-}
 
-const saveUsers = () => {
-  localStorage.setItem("users", JSON.stringify(users))
-}
-
-const validateUserLogin = (username, password) => {
-  let found = false
+const validateUserLogin = (identifier, password) => {
 
   if (users.length === 0) {
     incorrect.classList.remove("hidden")
@@ -59,7 +47,7 @@ const validateAdminLogin = () => {
   } else { validateUserLogin(username, password) }
 }
 
-const validateUserSignup = (username, password) => {
+const validateUserSignup = (username, email, password) => {
   incorrect.innerText = "User Already Exists"
 
   if (username !== admin.username) {
