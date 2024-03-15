@@ -40,7 +40,6 @@ const validateLogin = async (identifier, password) => {
 
 const saveUserData = (user_data) => {
   localStorage.setItem("user_data", JSON.stringify(user_data))
-  console.log(user_data)
 }
 
 const validateUserLogin = async (identifier, password) => {

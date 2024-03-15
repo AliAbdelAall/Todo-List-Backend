@@ -45,8 +45,8 @@ const loadTodos = () => {
 loadTodos()
 
 const filterTodos = (to_delete_id) => {
-  const filtered_todos = user_data.todos.filter((todo) => todo.id !== to_delete_id)
-  user_data.todos = filtered_todos
+  user_data.todos = user_data.todos.filter((todo) => todo.id != to_delete_id)
+  saveUserData(user_data)
 }
 
 const deleteTodoTask = () => {
@@ -56,15 +56,16 @@ const deleteTodoTask = () => {
 
       if (element.target.classList.contains("delete")) {
         const todo_id = todo.id
-        console.log(todo_id)
 
         await deleteTodo(todo_id)
         filterTodos(todo.id)
         todo.remove()
+        saveUserData(user_data)
       }
     })
   })
 }
+deleteTodoTask()
 
 const addTodo = async (user_id, todo, completed = 0) => {
 
@@ -74,7 +75,6 @@ const addTodo = async (user_id, todo, completed = 0) => {
   } else {
     const to_save_todo = await saveTodo(user_id, todo, completed)
     const todo_task = createTodo(user_id, todo)
-
     user_data.todos.push({
       id: to_save_todo.id,
       user_id: user_id,
@@ -82,6 +82,10 @@ const addTodo = async (user_id, todo, completed = 0) => {
       completed: completed
     })
     list_container.append(todo_task)
+    input_box.value = ""
+    incorrect.classList.add("invisible")
+    saveUserData(user_data)
+
   }
 }
 add_button.addEventListener("click", () => {
