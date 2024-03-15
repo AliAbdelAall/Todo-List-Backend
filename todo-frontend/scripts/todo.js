@@ -5,7 +5,7 @@ const incorrect = document.getElementById("incorrect")
 
 const user_data = JSON.parse(localStorage.getItem("user_data"));
 
-const createTodo = (todo, id) => {
+const createTodo = () => {
   const todo_wrapper = document.createElement("div")
   todo_wrapper.innerHTML = todo
   todo_wrapper.className = "flex space-between wrap todo"
@@ -36,16 +36,23 @@ const loadTodos = () => {
 
 loadTodos()
 
-add_button.addEventListener("click", function () {
+
+const addTodo = async (user_id, todo, completed = 0) => {
   if (input_box.value === "") {
     incorrect.classList.remove("invisible")
   } else {
-
+    const to_save_todo = await saveTodo(user_id, todo, 0)
+    const todo_task = createTodo()
+    list_container.append(todo_task)
   }
+}
+add_button.addEventListener("click", () => {
+  addTodo(user_data.user_id, input_box.value)
 })
 
-list_container.forEach(element => {
-  element.addEventListener("click", function (element) {
+// list_container.forEach(element => {
+//   element.addEventListener("click", function (element) {
 
-  })
-})
+//   });
+
+// })
