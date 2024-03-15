@@ -10,22 +10,6 @@ const have_account = document.getElementById("have-account")
 const login_switch = document.getElementById("login-switch")
 const login_btn = document.getElementById("login-btn")
 
-const saveUserId = (id) => {
-  localStorage.setItem("user_id", id)
-}
-
-const validateUserLogin = async (identifier, password) => {
-  const valid_login = await validateLogin(identifier, password)
-  if (valid_login.status === "success") {
-    saveUserId = (valid_login.user_id)
-    window.location.href = "http://127.0.0.1:5500/todo-frontend/pages/todo.html"
-  } else {
-    incorrect.innerText = "Incorrect Username or Password"
-    incorrect.classList.remove("invisible")
-  }
-}
-
-
 const validateUserSignup = async (username, email, password) => {
   const valid_signup = await validateSignup(username, email, password)
   if (valid_signup.status === "success") {
@@ -102,7 +86,9 @@ const checkLoginOrSignup = () => {
 
   setTimeout(() => {
     if (login_btn.innerText === "Login") {
-      validateUserLogin()
+      const identifier = input_username.value
+      const password = input_password.value
+      validateUserLogin(identifier, password)
     } else {
       validateUserInput()
     }
