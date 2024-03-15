@@ -10,58 +10,34 @@ const have_account = document.getElementById("have-account")
 const login_switch = document.getElementById("login-switch")
 const login_btn = document.getElementById("login-btn")
 
+const saveUserId = (id) => {
+  localStorage.setItem("user_id", id)
+}
 
-
-
-const validateUserLogin = (identifier, password) => {
-  const valid_login = validateLogin(identifier, password)
-  //   if (users.length === 0) {
-  //     incorrect.classList.remove("invisible")
-  //   } else {
-  //     for (let i = 0; i < users.length; i++) {
-  //       if (username === users[i].username) {
-  //         found = true
-
-  //         if (password === users[i].password) {
-  //           window.location.href = "./pages/main.html"
-  //           break
-  //         } else {
-  //           incorrect.classList.remove("invisible")
-  //           break
-  //         }
-  //       }
-  //     } if (!found) {
-  //       incorrect.classList.remove("invisible")
-  //     }
-  //   }
+const validateUserLogin = async (identifier, password) => {
+  const valid_login = await validateLogin(identifier, password)
+  if (valid_login.status === "success") {
+    saveUserId = (valid_login.user_id)
+    window.location.href = "http://127.0.0.1:5500/todo-frontend/pages/todo.html"
+  } else {
+    incorrect.innerText = "Incorrect Username or Password"
+    incorrect.classList.remove("invisible")
+  }
 }
 
 
 const validateUserSignup = async (username, email, password) => {
-  console.log(typeof (username), typeof (email), typeof (password))
   const valid_signup = await validateSignup(username, email, password)
-  console.log(valid_signup)
-  // incorrect.innerText = "User Already Exists"
-
-  // if (username !== admin.username) {
-  //   let found = false
-
-  //   for (let i = 0; i < users.length; i++) {
-  //     if (username === users[i].username) {
-  //       incorrect.classList.remove("invisible")
-  //       found = true
-  //       break
-  //     }
-  //   }
-  //   if (!found) {
-  //     users.push({
-  //       username: username,
-  //       password: password
-  //     })
-  //     saveUsers()
-  //     window.location.href = "./pages/main.html"
-  //   }
-  // } else { incorrect.classList.remove("invisible") }
+  if (valid_signup.status === "success") {
+    switchToLogin()
+    input_username.value = ""
+    input_email.value = ""
+    input_password.value = ""
+    confirm_password.value = ""
+  } else {
+    incorrect.innerText = "User Already Exists"
+    incorrect.classList.remove("invisible")
+  }
 }
 
 const checkInputIfEmpty = (username, email, password, conf_password) => {
@@ -82,8 +58,9 @@ const validateUserInput = () => {
     if (password !== conf_password) {
       incorrect.innerText = "Passwords Does Not Match"
       incorrect.classList.remove("invisible")
+    } else {
+      validateUserSignup(username, email, password)
     }
-    validateUserSignup(username, email, password)
   } else {
     incorrect.innerText = "Please Fill All required Fields"
     incorrect.classList.remove("invisible")
