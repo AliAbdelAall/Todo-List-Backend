@@ -39,6 +39,9 @@ const validateLogin = async (identifier, password) => {
   }
 }
 
+const saveUserId = (id) => {
+  localStorage.setItem("user_id", id)
+}
 
 const validateUserLogin = async (identifier, password) => {
   const valid_login = await validateLogin(identifier, password)
