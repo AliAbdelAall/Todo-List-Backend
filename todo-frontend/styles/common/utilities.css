@@ -45,3 +45,11 @@
 .wrap{
   flex-wrap: wrap;
 }
+
+.hidden{
+  display: none;
+}
+
+.invisible{
+  visibility: hidden;
+}

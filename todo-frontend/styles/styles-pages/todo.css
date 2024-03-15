@@ -145,3 +145,6 @@ input::placeholder{
   }
 }
 
+.incorrect{
+  margin-left: 38px;
+}

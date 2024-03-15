@@ -19,9 +19,12 @@
         <h1 flex align-center class="header">To-Do List <i class="fa-solid fa-pen"></i></h1>
         <h2>Score: <span>0</span></h2>
       </div>
-      <div class="flex align-center wrap space-between add-task">
-        <input id="input-box" type="text" placeholder="Add a task">
-        <button  class="white add-btn" id="add-button">Add</button>
+      <div >
+        <p class="incorrect invisible red" id="incorrect">Please fill a Task first</p>
+        <div class="flex align-center wrap space-between add-task">
+          <input id="input-box" type="text" placeholder="Add a task">
+          <button  class="white add-btn" id="add-button">Add</button>
+        </div>
       </div>
       <div class="list-container" id="list-container" >
 

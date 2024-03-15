@@ -1,6 +1,7 @@
 const input_box = document.getElementById("input-box")
 const list_container = document.getElementById("list-container")
 const add_button = document.getElementById("add-button")
+const incorrect = document.getElementById("incorrect")
 
 const user_data = JSON.parse(localStorage.getItem("user_data"));
 
@@ -36,6 +37,11 @@ const loadTodos = () => {
 loadTodos()
 
 add_button.addEventListener("click", function () {
+  if (input_box.value === "") {
+    incorrect.classList.remove("invisible")
+  } else {
+
+  }
 })
 
 list_container.forEach(element => {

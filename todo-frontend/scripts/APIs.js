@@ -54,3 +54,23 @@ const validateUserLogin = async (identifier, password) => {
     incorrect.classList.remove("invisible")
   }
 }
+
+const saveTodo = async (id, todo, completed) => {
+  try {
+    const save_todo_formdata = new URLSearchParams()
+    save_todo_formdata.append("id", id)
+    save_todo_formdata.append("todo", todo)
+    save_todo_formdata.append("completed", completed)
+    const result = await fetch("http://127.0.0.1/Todo%20List%20Backend/todo-backend/save-todo.php", {
+      method: 'POST',
+      body: save_todo_formdata,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    })
+    response = await result.json()
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
