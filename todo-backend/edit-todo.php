@@ -16,10 +16,10 @@ if($num_rows == 0){
   $response['message'] = "todo not found";
 }else{
   $edit_todo = $mysqli->prepare("update todos set todo = ?, completed = ?  where id = ?");
-  $edit_todo->bind_param("sii",$todo, $completed, $id);
+  $edit_todo->bind_param("isi", $id,$todo, $completed );
   $edit_todo->execute();
   
-  $response['status'] = 'sucsess';
+  $response['status'] = 'succsess';
   $response['message'] = "todo sucsessfuly edited";
 }
 

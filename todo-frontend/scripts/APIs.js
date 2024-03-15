@@ -38,16 +38,16 @@ const validateLogin = async (identifier, password) => {
   }
 }
 
-const saveUserId = (id) => {
-  localStorage.setItem("user_id", id)
-  console.log(id)
+const saveUserData = (user_data) => {
+  localStorage.setItem("user_data", JSON.stringify(user_data))
+  console.log(user_data)
 }
 
 const validateUserLogin = async (identifier, password) => {
   console.log("validateUserLogin")
-  const valid_login = await validateLogin(identifier, password)
-  if (valid_login.status === "success") {
-    saveUserId(valid_login.user_id)
+  const user_data = await validateLogin(identifier, password)
+  if (user_data.status === "success") {
+    saveUserData(user_data)
     window.location.href = "http://127.0.0.1:5500/todo-frontend/pages/todo.html"
   } else {
     incorrect.innerText = "Incorrect Username or Password"
