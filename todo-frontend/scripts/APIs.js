@@ -55,15 +55,33 @@ const validateUserLogin = async (identifier, password) => {
   }
 }
 
-const saveTodo = async (id, todo, completed) => {
+const saveTodo = async (user_id, todo, completed) => {
   try {
     const save_todo_formdata = new URLSearchParams()
-    save_todo_formdata.append("id", id)
+    save_todo_formdata.append("user_id", user_id)
     save_todo_formdata.append("todo", todo)
     save_todo_formdata.append("completed", completed)
     const result = await fetch("http://127.0.0.1/Todo%20List%20Backend/todo-backend/save-todo.php", {
       method: 'POST',
       body: save_todo_formdata,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    })
+    response = await result.json()
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const deleteTodo = async (id) => {
+  try {
+    const delete_todo_formdata = new URLSearchParams()
+    delete_todo_formdata.append("id", id)
+    const result = await fetch("http://127.0.0.1/Todo%20List%20Backend/todo-backend/delete-todo.php", {
+      method: 'POST',
+      body: delete_todo_formdata,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }
