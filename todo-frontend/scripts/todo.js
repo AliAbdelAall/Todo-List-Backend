@@ -44,17 +44,23 @@ const loadTodos = () => {
 
 loadTodos()
 
+const filterTodos = (to_delete_id) => {
+  const filtered_todos = user_data.todos.filter((todo) => todo.id !== to_delete_id)
+  user_data.todos = filtered_todos
+}
+
 const deleteTodoTask = () => {
   const todos_list = list_container.querySelectorAll(".todo")
-  console.log(todos)
   todos_list.forEach((todo) => {
     todo.addEventListener("click", async (element) => {
 
       if (element.target.classList.contains("delete")) {
-        const element_id = element.id
+        const todo_id = todo.id
+        console.log(todo_id)
 
-        await deleteTodo(element_id)
-        element.remove()
+        await deleteTodo(todo_id)
+        filterTodos(todo.id)
+        todo.remove()
       }
     })
   })
@@ -80,4 +86,8 @@ const addTodo = async (user_id, todo, completed = 0) => {
 }
 add_button.addEventListener("click", () => {
   addTodo(user_data.user_id, input_box.value)
+})
+
+list_container.addEventListener("mouseenter", () => {
+  deleteTodoTask()
 })
