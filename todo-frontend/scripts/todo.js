@@ -21,7 +21,19 @@ const createTodo = (todo, id) => {
   return todo_wrapper
 }
 
+const loadTodos = () => {
+  if (user_data.status === "success") {
+    const { todos } = user_data
+    for (i = 0; i < todos.length; i++) {
+      const todo = createTodo(todos[i].todo, todos[i].user_id)
+      console.log(todo, typeof (todo))
+      console.log(todos[i].todo, todos[i].user_id)
+      list_container.append(todo)
+    }
+  }
+}
 
+loadTodos()
 
 add_button.addEventListener("click", function () {
 })
