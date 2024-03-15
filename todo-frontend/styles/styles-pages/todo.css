@@ -112,8 +112,14 @@ input::placeholder{
   right: 35px;
 } 
 
-.todo i:hover{
+.todo .fa-pen-to-square:hover{
   opacity: 70%;
+  color: rgb(0, 129, 204);
+}
+
+.todo .fa-x:hover{
+  opacity: 70%;
+  color: rgb(214, 0, 0);
 }
 
 @media screen and (max-width: 440px) {
